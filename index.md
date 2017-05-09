@@ -89,18 +89,14 @@ Below is an overview of the Variant Prioritization Tool constructed by Nir.
 ### Pipeline:
 
 
-#### Documentation:
-
-
-#### Results:
-
-
-
-
-
-
-
-
+#### PolyPhen2
+The program PolyPhen2 was used to analyze Carl’s SNPs. This program calculates the probability that a particular SNP is “damaging”, using a Bayes classifier and information about the particular sequence, its conservation, and the structure of the gene (Adzhubei et al. 2013). The only input required is the chromosome number, the location of the gene within the chromosome, and the original and variant nucleotide. 3306 of the 3533 protein coding SNPs were analyzed using this method. Of these, 80.7% (2669) were classified as “benign”, with probabilities of being damaging ranging from 0 to .451. 10.4% (344) of the SNPs were predicted to be “probably damaging”, with a probability ranging from .959 to 1. SNPs were also classified as “possibly damaging”; 8.9% (293) of these fell into this category, with probabilities ranging from .454 to .948. 
+#### PROVEAN
+The algorithm PROVEAN, assigns the SNPs as either “neutral” or “deleterious” through alignment base scoring (Choi and Chan, 2015). Of the 3533 SNPs input into the program, 3 were determined to be in a non-protein coding region, and were not analyzed further. The remaining 3530 protein coding SNPs were analyzed using this program. 87.9% (3104) were classified as neutral, with 11.9% (420) classified as deleterious. A further 0.2% (6) were unable to be classified. Of the neutral variations, 99.7% were single amino acid changes, while 0.3% were synonymous mutations. All of the deleterious mutations involved single amino acid changes, while all of the undetermined variants encoded nonsense mutations.
+#### SIFT
+The program SIFT was also used to analyze the 3530 protein coding SNPs (3 of the original 3533 were also found to be in non-protein coding regions). It uses sequence alignment and conservation to determine the probability of a particular mutation occurring, classifying a mutation as “damaging” if this value is below a particular cutoff (Kumar et al. 2009). 80.8% (2851) were considered to be “tolerated”, while 18.6% (658) were considered to be “damaging”. A further 0.6% (21) were undetermined. This program also gave an identical prediction with regards to the nonsynonymous and synonymous classification of the tolerated and damaging SNPs. Likewise, 6 variants classified as “undetermined” were considered to be nonsense mutations, the exact number as was found using PROVEAN.
+#### Results
+The output of PROVEAN, provides information on whether the individual SNPs are found within the SNP database or if they are a unique variant. Of the 3530 protein coding SNPs analyzed from SubjectZ, 93.2% (3290) were present in the dbSNP, while only 6.8% (240) were unique mutations. Each of the programs was fairly consistent in their classification of a particular SNP as benign or neutral. PolyPhen2 and SIFT had nearly identical classification into this category (80.8% vs 80.7%), while PROVEAN predicted more neutral variants (87.9%). The three-category classification used in PolyPhen2 meant that fewer variants were predicted to be damaging, with 10.4% compared to the 11.9% and 18.6% seen with PROVEAN and SIFT respectively. Due to the very similar probabilities, SIFT likely classifies the “possibly damaging” mutants seen with PolyPhen2 as “damaging”. The similarity between these programs suggests that though the different algorithms can classify the majority of SNPs in a similar way, there are certain SNPs that are put into varying classifications depending on the program. Many SNPs are quite common within a population. 
 
 #### Conclusions:
 
