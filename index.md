@@ -63,7 +63,7 @@ Below is an overview of the Variant Prioritization Tool constructed by Nir.
 
 ![alt text][logo]
 
-[logo]: https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/13flowchart.png "Flow Chart" 
+[logo]: https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/13flowchart.png =250x
 
 
 #### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT and PolyPhen
