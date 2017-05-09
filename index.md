@@ -62,7 +62,8 @@ Ideally, gene information, variant information such as GERP scores, and phenotyp
 Below is an overview of the Variant Prioritization Tool constructed by Nir.
 
 ![alt text][logo]
-[logo]:final-project-1-3-team2-team-1-3-2/13flowchart.png "Flow Chart" 
+
+[logo]: final-project-1-3-team2-team-1-3-2/13flowchart.png "Flow Chart" 
 
 
 #### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT and PolyPhen
