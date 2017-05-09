@@ -28,7 +28,7 @@ Here, we aim to prioritize variants in the exome of subjectZ. SubjectZ has 22,98
 #### The Inputs Required for Variant Prioritization Tools
    The output of an alignment of one individual’s genome to a reference is often a Variant Call Format file. This file contains not only information about mutations in the nucleotide sequence compared to the reference, but also important metadata regarding the quality of the alignment, and other important properties that can allow for further sub-classification (3). In our analysis, we have a paired down VCF text file containing the following information. 
    
-  ![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/ramya/inputfile.png)
+![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/ramya/inputfile.png)
   
 Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that the nucleotide sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
 #### Principles for Variant Prioritization
@@ -82,6 +82,7 @@ Below is an overview of the Variant Prioritization Tool constructed by Nir.
 
 ### Pipeline:
 
+The ability to predict harmful protein coding mutants is becoming increasingly important in both the clinical and the research setting, and as a result there have been many algorithms developed that predict whether a particular nucleotide change is harmful or not. 
 
 #### PolyPhen2
 The program PolyPhen2 was used to analyze Carl’s SNPs. This program calculates the probability that a particular SNP is “damaging”, using a Bayes classifier and information about the particular sequence, its conservation, and the structure of the gene (Adzhubei et al. 2013). The only input required is the chromosome number, the location of the gene within the chromosome, and the original and variant nucleotide. 3306 of the 3533 protein coding SNPs were analyzed using this method. Of these, 80.7% (2669) were classified as “benign”, with probabilities of being damaging ranging from 0 to .451. 10.4% (344) of the SNPs were predicted to be “probably damaging”, with a probability ranging from .959 to 1. SNPs were also classified as “possibly damaging”; 8.9% (293) of these fell into this category, with probabilities ranging from .454 to .948. 
