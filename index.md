@@ -28,7 +28,7 @@ Here, we aim to prioritize variants in the exome of subjectZ. SubjectZ has 22,98
 #### The Inputs Required for Variant Prioritization Tools
    The output of an alignment of one individual’s genome to a reference is often a Variant Call Format file. This file contains not only information about mutations in the nucleotide sequence compared to the reference, but also important metadata regarding the quality of the alignment, and other important properties that can allow for further sub-classification (3). In our analysis, we have a paired down VCF text file containing the following information. 
    
-  ![alt text](logo: https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/ramya/inputfile.png)
+  ![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/ramya/inputfile.png)
   
 Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
 #### Principles for Variant Prioritization
