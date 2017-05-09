@@ -59,6 +59,11 @@ All humans have two alleles of a given gene. Most often, only when both alleles 
 Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6).
 
 #### *De novo* Variant Prioritization Tool for SubjectZ
+Below is an overview of the Variant Prioritization Tool constructed by Nir.
+
+![alt text][logo]
+[logo]:final-project-1-3-team2-team-1-3-2/13flowchart.png "Flow Chart" 
+
 
 #### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT and PolyPhen
 
