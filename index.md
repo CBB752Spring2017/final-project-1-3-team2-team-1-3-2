@@ -34,20 +34,30 @@ Here, we aim to prioritize variants in the exome of subjectZ. SubjectZ has 22,98
    
   insert image.
   
-  Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
+Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
 #### Principles for Variant Prioritization
-   Ideally, variant prioritization employs several orthogonal pieces of data to effectively classify SNVs. I will discuss some commonly used parameters in variant prioritization and their significance. 
+Ideally, variant prioritization employs several orthogonal pieces of data to effectively classify SNVs. I will discuss some commonly used parameters in variant prioritization and their significance. 
    
 *Sequence Information:*
-   Obviously, the nucleotide sequence information is used, namely to assess any mutations in amino acid. Synonymous mutations as mentioned are often harmless as they result in the same amino acid at the position. However, codon frequency can sometimes cause problems if the new codon does not have enough anti-codon charged tRNAs for effective protein synthesis. Non-synonymous mutations become more harmful as the amino acid substituted is more divergent in size and charge.
+
+Obviously, the nucleotide sequence information is used, namely to assess any mutations in amino acid. Synonymous mutations as mentioned are often harmless as they result in the same amino acid at the position. However, codon frequency can sometimes cause problems if the new codon does not have enough anti-codon charged tRNAs for effective protein synthesis. Non-synonymous mutations become more harmful as the amino acid substituted is more divergent in size and charge.
+   
 *Conservation and Position:*
-   Considering the conservation and position of SNVs is also important. Mutations in the hydrophobic core are often rarer as these regions tend to be more well-conserved. A common hypothesis is that mutating conserved regions has a greater risk of deleteriousness. The reason rare SNVs are more likely to be deleterious is because others have been eradicated from the population due to intolerance – probably because the mutation was a well-conserved region. Using structure prediction software such as TMHMM, and Phyre2 to see whether the mutated amino acid is in a conserved internal secondary structure, active site, or membrane could give further insight into the effect size of the mutation (7).
+
+Considering the conservation and position of SNVs is also important. Mutations in the hydrophobic core are often rarer as these regions tend to be more well-conserved. A common hypothesis is that mutating conserved regions has a greater risk of deleteriousness. The reason rare SNVs are more likely to be deleterious is because others have been eradicated from the population due to intolerance – probably because the mutation was a well-conserved region. Using structure prediction software such as TMHMM, and Phyre2 to see whether the mutated amino acid is in a conserved internal secondary structure, active site, or membrane could give further insight into the effect size of the mutation (7).
+   
    This does not exclude common variants from the search as there are many examples of common variants that influence well-known diseases such as breast cancer. The GERP score can be used to evaluate conservation in the case of SubjectZ.
+   
 *Phenotypic Information and Prior Knowledge:*
-  Existing information about the mutation can be accessed such as any existing information regarding the SNVs involvement in characterized diseases. This phenotypic information can be mined using the position of the SNV and/or the provided protein sequences. For example, finding the BRCA SNV alone (which occurs about 3% of the population on average) may not have given it as high a priority as other rare SNVs, but armed with existing information about its critical role in breast cancer would lead to higher prioritization. Gene Ontology terms are good starting points for this type of information as well as SWISS-PROT entries. Considering whether the SNV was previously identified in the 1000G project or in the dsSNPs database and checking these entries might provide further insights into the deleteriousness of the mutation.
+
+Existing information about the mutation can be accessed such as any existing information regarding the SNVs involvement in characterized diseases. This phenotypic information can be mined using the position of the SNV and/or the provided protein sequences. For example, finding the BRCA SNV alone (which occurs about 3% of the population on average) may not have given it as high a priority as other rare SNVs, but armed with existing information about its critical role in breast cancer would lead to higher prioritization. Gene Ontology terms are good starting points for this type of information as well as SWISS-PROT entries. Considering whether the SNV was previously identified in the 1000 Genome project or in the dsSNPs database and checking these entries might provide further insights into the deleteriousness of the mutation.
+  
 *Other genetic factors:*
-	 All humans have two alleles of a given gene. Most often, only when both alleles are mutated, i.e. when the individual is homozygous for the mutation, does the disease phenotype arise. In some cases haploinsufficiency may arise, when the individual does have one functioning copy but it is not producing enough gene product for normal function. Checking whether the SNV identified is in only one or both alleles can help prioritize the mutation.
-  Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6).
+
+All humans have two alleles of a given gene. Most often, only when both alleles are mutated, i.e. when the individual is homozygous for the mutation, does the disease phenotype arise. In some cases haploinsufficiency may arise, when the individual does have one functioning copy but it is not producing enough gene product for normal function. Checking whether the SNV identified is in only one or both alleles can help prioritize the mutation.
+	 
+Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6).
+
 #### *De novo* Variant Prioritization Tool for SubjectZ
 
 #### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT and PolyPhen
