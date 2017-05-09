@@ -69,7 +69,7 @@ Ideally, gene information, variant information such as GERP scores, and phenotyp
 #### Documentation: *De novo* Variant Prioritization Tool for SubjectZ
 Below is an overview of the Variant Prioritization Tool constructed by Nir.
 
-![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/13flowchart.png)
+![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/13flow.png)
 
 
 #### Results:
@@ -98,7 +98,7 @@ Each of the programs was fairly consistent in their classification of a particul
 
 Both PROVEAN and SIFT identified the same number of nonsynonymous, synonymous, and nonsense mutations. This implies that these algorithms can correctly classify the type of mutation, and that both programs have the ability to correctly recognize the codons within the genes and whether the mutation affects the amino acid being encoded. PolyPhen2 has similar results, with slightly fewer synonymous mutations and nonsense mutations detected. The similarity between these programs with regards to codon detection and deleteriousness predictions suggests that though the different algorithms classify the majority of SNPs in a similar way, there are still some variants which are variably classified. Experimental analysis through mutagenesis will be helpful in determining whether these variably classified SNPs are truly harmful or benign.
 
-[Rankings](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/polyphen%20damaging%20rankings.xlsx)
+[SubjectZ SNV Rankings](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/polyphen%20damaging%20rankings.xlsx)
 ![text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/pipelinegraph.png)
 
 
