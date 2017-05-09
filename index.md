@@ -20,8 +20,9 @@ Table of Contents
  -Pipeline: Megan
 
 ### Introduction: What is Variant Prioritization?
-   Since the advent of rapid and cheap whole genome sequencing technologies, we have amassed a large diverse collection of human genomes. Interpreting this large amount of data is still challenging, and one such challenge is understanding the function of single nucleotide variations (SNVs) that often arise in individual genomes compared to reference sets which also include many single nucleotide polymorphisms (SNPs). Specifically, identifying pathogenic or deleterious mutations compared to common background mutations is a key challenge. Often, deleterious mutations are non-synonymous, meaning that they result in the change of one amino acid to another. The average individual has over 10 million SNPs in the whole genome, about 20,000 of which are in the exome or the protein-coding portion of the genome. Of course, not all of these are deleterious - the number of potentially deleterious mutations in the exome often amounts to about several hundred (1)(2). This problem of identifying relevant disease-causing mutations or variants compared to common mutations is called variant prioritization.
-   Here, we aim to prioritize variants in the exome of subjectZ. SubjectZ has 22,981 exome SNVs of which 1,800 are rare SNVs (4). Furthermore, of these rare SNVs, 1,018 were found to be nonsynonymous. Both a denovo approach and existing tools such as SIFT, PolyPhen, and Provean. The methodology used to prioritize SNVs in the denovo tool will be explained and compared to those used in other approaches. The results of our tool and those from the mentioned tools are detailed in the Pipeline and Coding sections of this text.
+Since the advent of rapid and cheap whole genome sequencing technologies, we have amassed a large diverse collection of human genomes. Interpreting this large amount of data is still challenging, and one such challenge is understanding the function of single nucleotide variations (SNVs) that often arise in individual genomes compared to reference sets which also include many single nucleotide polymorphisms (SNPs). Specifically, identifying pathogenic or deleterious mutations compared to common background mutations is a key challenge. Often, deleterious mutations are non-synonymous, meaning that they result in the change of one amino acid to another. The average individual has over 10 million SNPs in the whole genome, about 20,000 of which are in the exome or the protein-coding portion of the genome. Of course, not all of these are deleterious - the number of potentially deleterious mutations in the exome often amounts to about several hundred (1)(2). This problem of identifying relevant disease-causing mutations or variants compared to common mutations is called variant prioritization.
+
+Here, we aim to prioritize variants in the exome of subjectZ. SubjectZ has 22,981 exome SNVs of which 1,800 are rare SNVs (4). Furthermore, of these rare SNVs, 1,018 were found to be nonsynonymous. Both a denovo approach and existing tools such as SIFT, PolyPhen, and Provean. The methodology used to prioritize SNVs in the denovo tool will be explained and compared to those used in other approaches. The results of our tool and those from the mentioned tools are detailed in the Pipeline and Coding sections of this text.
 
 
 
@@ -30,10 +31,13 @@ Table of Contents
 ### Writing:
 #### The Inputs Required for Variant Prioritization Tools
    The output of an alignment of one individual’s genome to a reference is often a Variant Call Format file. This file contains not only information about mutations in the nucleotide sequence compared to the reference, but also important metadata regarding the quality of the alignment, and other important properties that can allow for further sub-classification (3). In our analysis, we have a paired down VCF text file containing the following information. 
+   
   insert image.
+  
   Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
 #### Principles for Variant Prioritization
    Ideally, variant prioritization employs several orthogonal pieces of data to effectively classify SNVs. I will discuss some commonly used parameters in variant prioritization and their significance. 
+   
 *Sequence Information:*
    Obviously, the nucleotide sequence information is used, namely to assess any mutations in amino acid. Synonymous mutations as mentioned are often harmless as they result in the same amino acid at the position. However, codon frequency can sometimes cause problems if the new codon does not have enough anti-codon charged tRNAs for effective protein synthesis. Non-synonymous mutations become more harmful as the amino acid substituted is more divergent in size and charge.
 *Conservation and Position:*
