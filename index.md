@@ -30,7 +30,7 @@ Here, we aim to prioritize variants in the exome of subjectZ. SubjectZ has 22,98
    
   ![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/ramya/inputfile.png)
   
-Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
+Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that the nucleotide sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
 #### Principles for Variant Prioritization
 Ideally, variant prioritization employs several orthogonal pieces of data to effectively classify SNVs. I will discuss some commonly used parameters in variant prioritization and their significance. 
    
@@ -42,7 +42,7 @@ Obviously, the nucleotide sequence information is used, namely to assess any mut
 
 Considering the conservation and position of SNVs is also important. Mutations in the hydrophobic core are often rarer as these regions tend to be more well-conserved. A common hypothesis is that mutating conserved regions has a greater risk of deleteriousness. The reason rare SNVs are more likely to be deleterious is because others have been eradicated from the population due to intolerance – probably because the mutation was a well-conserved region. Using structure prediction software such as TMHMM, and Phyre2 to see whether the mutated amino acid is in a conserved internal secondary structure, active site, or membrane could give further insight into the effect size of the mutation (7).
    
-   This does not exclude common variants from the search as there are many examples of common variants that influence well-known diseases such as breast cancer. The GERP score can be used to evaluate conservation in the case of SubjectZ.
+   This does not exclude common variants from the search as there are many examples of common variants that influence well-known diseases such as breast cancer. The GERP score can be used to evaluate conservation in the case of SubjectZ. Looking at the amino acid level, a BLOSUM matrix accounting for the high degree of similarity between reference and subjectZ can be used to evaluate conservation.
    
 *Phenotypic Information and Prior Knowledge:*
 
