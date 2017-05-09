@@ -24,15 +24,11 @@ Since the advent of rapid and cheap whole genome sequencing technologies, we hav
 
 Here, we aim to prioritize variants in the exome of subjectZ. SubjectZ has 22,981 exome SNVs of which 1,800 are rare SNVs (4). Furthermore, of these rare SNVs, 1,018 were found to be nonsynonymous. Both a denovo approach and existing tools such as SIFT, PolyPhen, and Provean. The methodology used to prioritize SNVs in the denovo tool will be explained and compared to those used in other approaches. The results of our tool and those from the mentioned tools are detailed in the Pipeline and Coding sections of this text.
 
-
-
-
-
 ### Writing:
 #### The Inputs Required for Variant Prioritization Tools
    The output of an alignment of one individual’s genome to a reference is often a Variant Call Format file. This file contains not only information about mutations in the nucleotide sequence compared to the reference, but also important metadata regarding the quality of the alignment, and other important properties that can allow for further sub-classification (3). In our analysis, we have a paired down VCF text file containing the following information. 
    
-  insert image.
+  ![alt text](logo: https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/ramya/inputfile.png)
   
 Perhaps the only non-self explanatory field is the GERP score which “measures evolutionary conservation of genetic sequence across species” (5). A higher score means that sequence is more conserved and variation is rarer and potentially more adverse. All of this information is parsed for prioritization.
 #### Principles for Variant Prioritization
@@ -58,11 +54,6 @@ All humans have two alleles of a given gene. Most often, only when both alleles 
 	 
 Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6).
 
-#### *De novo* Variant Prioritization Tool for SubjectZ
-Below is an overview of the Variant Prioritization Tool constructed by Nir.
-
-![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/13flowchart.png)
-
 #### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT and PolyPhen
 
 
@@ -75,7 +66,10 @@ Below is an overview of the Variant Prioritization Tool constructed by Nir.
 ### Coding:
 
 
-#### Documentation:
+#### Documentation: *De novo* Variant Prioritization Tool for SubjectZ
+Below is an overview of the Variant Prioritization Tool constructed by Nir.
+
+![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/13flowchart.png)
 
 
 #### Results:
