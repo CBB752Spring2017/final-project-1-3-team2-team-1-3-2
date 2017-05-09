@@ -50,7 +50,7 @@ Existing information about the mutation can be accessed such as any existing inf
   
 *Other genetic factors:*
 
-All humans have two alleles of a given gene. Most often, only when both alleles are mutated, i.e. when the individual is homozygous for the mutation, does the disease phenotype arise. In some cases haploinsufficiency may arise, when the individual does have one functioning copy but it is not producing enough gene product for normal function. Checking whether the SNV identified is in only one or both alleles can help prioritize the mutation.
+All humans have two alleles of a given gene. Most often, only when both alleles are mutated, i.e. when the individual is homozygous for the mutation, does the disease phenotype arise. In some cases haploinsufficiency may arise, when the individual does have one functioning copy but it is not producing enough gene product for normal function. Checking whether the SNV identified is in only one or both alleles can help prioritize the mutation. Lastly, any co-varying mutations will not be caught by standard SNV ranking pipelines - only monogenic variants can be identified. 
 	 
 Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6).
 
