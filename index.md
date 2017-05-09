@@ -104,7 +104,13 @@ Both PROVEAN and SIFT identified the same number of nonsynonymous, synonymous, a
 
 
 
+References:
 
+Adzhubei I, Jordan DM, Sunyaev SR. Predicting Functional Effect of Human Missense Mutations Using PolyPhen-2. Current protocols in human genetics / editorial board, Jonathan L Haines . [et al]. 2013;0 7:Unit7.20. doi:10.1002/0471142905.hg0720s76.
+
+Choi Y., Chan A.P. PROVEAN web server: a tool to predict the functional effect of amino acid substitutions and indels. Bioinformatics. 2015;31(16):2745-2747.
+
+Kumar P., Henikoff S., Ng P.C. Predicting the effects of coding non-synonymous variants on protein function using the SIFT algorithm. Nature Protocols. 2009;4(8):1073-1082.
 
 
 #### References:
