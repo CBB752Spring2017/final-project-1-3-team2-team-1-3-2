@@ -1,0 +1,202 @@
+---
+title: "CBB 752 - Project 1.3"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(knitr)
+library(ggplot2)
+library(peplib) # load blosum matrix
+library(gplots)
+```
+
+```{r, include=FALSE}
+x <- read.delim("Struct_annotation.txt", header = FALSE, as.is = TRUE,
+                col.names=c("ENSG", "loc", "GERP",
+                            "syn", "ENST", "change", "wildtype", "mutant"))
+```
+
+# Extract mutations
+```{r}
+getMutations <- function(str) {
+  (str <- sub(";.*", "", str)); (str <- sub(",.*", "", str))
+  (str <- sub("\\d+_\\d+_\\d+_", "", str))
+  (from <- sub("->.", "", str));
+  (to <- sub(".->", "", str))
+  data.frame(from=from, to=to)
+}
+
+mutations <- getMutations(x[,"change"])
+mutations$syn <- x$syn
+
+table(mutations$from)
+table(mutations$to)
+```
+
+# Charge Change
+
+We score each change in the following manner:
+```{r}
+charge.chage.table = matrix(c(0,1,1,1,0,2,1,2,0), nrow = 3, ncol=3, byrow = TRUE)
+row.names(charge.chage.table) <- c("Neutral", "Hydrophilic", "Hydrophobic" )
+colnames(charge.chage.table) <- c("Neutral", "Hydrophilic", "Hydrophobic" )
+kable(charge.chage.table, caption = "Amino Acid Hydrophobicity Change Table") 
+```
+
+Let's calculate the score according to this scoring system
+```{r}
+# There are many scales for AA hydrophobiciy. They following was adapted from:
+# http://www.imgt.org/IMGTeducation/Aide-memoire/_UK/aminoacids/IMGTclasses.html
+aa.hydrophobic <- c("A", "C", "I", "L", "M", "F", "W", "V")
+aa.hydrophilic <- c("R", "N", "D", "Q", "E", "K")
+aa.neutral     <- c("G", "H", "P", "S", "T", "Y")
+charge_change <- function(values) {
+  from <- values[1];  to <- values[2]; cc <- NA
+  if(from %in% aa.neutral) {
+    if(to %in% aa.neutral) { cc <- charge.chage.table["Neutral", "Neutral"] }
+    if(to %in% aa.hydrophilic) { cc <- charge.chage.table["Neutral", "Hydrophilic"] }
+    if(to %in% aa.hydrophobic) { cc <- charge.chage.table["Neutral", "Hydrophobic"] }
+  }
+  if(from %in% aa.hydrophilic) {
+    if(to %in% aa.hydrophilic) { cc <- charge.chage.table["Hydrophilic", "Hydrophilic"] }
+    if(to %in% aa.neutral) { cc <- charge.chage.table["Hydrophilic", "Neutral"] }
+    if(to %in% aa.hydrophobic) { cc <- charge.chage.table["Hydrophilic", "Hydrophobic"] }
+  }
+  if(from %in% aa.hydrophobic) {
+    if(to %in% aa.hydrophobic) { cc <- charge.chage.table["Hydrophobic", "Hydrophobic"] }
+    if(to %in% aa.neutral) { cc <- charge.chage.table["Hydrophobic", "Neutral"] }
+    if(to %in% aa.hydrophilic) { cc <- charge.chage.table["Hydrophobic", "Hydrophilic"] }
+  }
+  return(cc)
+}
+
+mutations$cc <- apply(mutations, 1, charge_change)
+
+```
+
+Plot of AA chagne in charge
+```{r, message=FALSE, warning=FALSE}
+qplot(mutations$cc,
+      geom="histogram",
+      main="Charge Change Histogram", xlab="",
+      border="blue", fill="red")
+
+```
+
+# Size Change
+
+As as estimate for size, we used the average volume of buried residues, calculated from the surface area of the side chain (Richards 1977; Baumann et al. 1989)
+Adapted from:
+http://www.proteinsandproteomics.org/content/free/tables_1/table08.pdf
+```{r, message=FALSE, warning=FALSE}
+aa.sizes <- list("A"=92 , "C"=106, "I"=169, "L"=168, "M"=171, "F"=203,
+                 "W"=240, "V"=142, "R"=255, "N"=135, "D"=125, "Q"=161, 
+                 "E"=155, "K"=171, "G"=66 , "H"=167, "P"=129, "S"=99 ,
+                 "T"=122, "Y"=203, "*"=0)
+mutations$size <- abs(as.numeric(unlist(aa.sizes[mutations$from])) -
+                      as.numeric(unlist(aa.sizes[mutations$to])))
+qplot(mutations$size,
+      geom="histogram",
+      main="Size diffence Histogram", xlab="",
+      border="blue", fill="red")
+```
+
+
+# Blosum 90
+```{r, message=FALSE, warning=FALSE}
+data("blosum90")
+blosum <- function(values) {
+  b <- NA
+  from <- values[1];  to <- values[2];
+  if( from != "*" & to != "*") { b <- blosum90[from,to] }
+  return(b)
+}
+
+mutations$blosum <- apply(mutations, 1, blosum)
+qplot(mutations$blosum,
+      geom="histogram",
+      main="Blosum 90 Histogram", xlab="",
+      border="blue", fill="red")
+```
+
+# GERP Score
+
+```{r}
+gerp <- function(str) {
+  tmp <- sub("GERP=", "", str)
+  tmp <- sub(";.*", "", tmp)
+  return(as.numeric(tmp))
+}
+
+mutations$gerp <- gerp(x$GERP)
+
+hist(mutations$gerp, probability = TRUE, las=3,
+     main="GERP Score Histogram", xlab="",
+     border="blue", col="red")
+
+```
+
+# Premature Stop
+We have sevral premature stop cases. Let's see how short is the read compared to the reference.
+
+```{r}
+pre.l <- which(mutations$syn == "prematureStop")
+pre <- x[pre.l, c("mutant", "wildtype")]
+pre$missing.len <- as.numeric(nchar(pre$wildtype) - regexpr("\\*", pre$mutant))
+```
+We can see that we have 3 missing nonsense mutations
+One with length of 15, and two other with lenght of 101
+We can assume taht the longer the deletion is, the more deleterious it is.
+
+# Summary Statistics
+
+Let's see what is the frequency of each mutation
+```{r}
+mutations.l <- array()
+for(i in 1:nrow(mutations)) {
+  m <- paste(mutations$from[i],mutations$to[i], sep="")
+  mutations.l <- c(mutations.l, m)
+}
+
+sort(table(mutations.l))
+
+```
+
+```{r}
+mutations.mat <- matrix(0, nrow = length(unique(mutations$from)),
+                        ncol = length(unique(mutations$to)))
+rownames(mutations.mat) = sort(unique(mutations$from))
+colnames(mutations.mat) = sort(unique(mutations$to), decreasing = FALSE)
+
+for(i in 1:nrow(mutations)) {
+  mutations.mat[mutations$from[i], mutations$to[i]] <-
+    1 + mutations.mat[mutations$from[i], mutations$to[i]]
+}
+
+mutations.mat
+heatmap.2(mutations.mat, col=colorRampPalette(c("blue", "red")), 
+           density.info="none", trace="none", dendrogram="none", 
+            symm=F,symkey=T,symbreaks=T, scale="none") 
+
+```
+
+
+# Deleterious Score (DScore)
+We define Dscore as following (for discussion see the writing section)
+$$DScore = \alpha Charge + \beta Size + \gamma GERP + \delta Blosum$$
+Each one of the coeffiecients can be determined by the user.
+We chose for example:
+$$\alpha = \beta = \gamma = \delta = 1$$
+
+```{r}
+coeff <- list(c=1, s=1, b=1, g=1) # This we can get as user input
+mutations$score <- coeff$c*mutations$cc + coeff$s*mutations$size + 
+  coeff$b*mutations$blosum + coeff$g*mutations$gerp
+m <- which.max(mutations$score)
+print(paste("The most deleterious mutations is:", x$loc[m]))
+```
