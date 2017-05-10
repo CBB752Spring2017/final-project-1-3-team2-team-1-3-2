@@ -15,7 +15,7 @@ Table of Contents
 
 
 **Contributors**
- -Writing and Coding Documentation: Ramya
+ -Writing, Coding Documentation & Workflow: Ramya
  -Coding: Nir
  -Pipeline: Megan
 
