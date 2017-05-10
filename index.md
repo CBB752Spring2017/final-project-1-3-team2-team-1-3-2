@@ -62,7 +62,10 @@ Both SIFT and PROVEAN only take into account sequence information when calculati
 Nir's tool does not look at existing functional information, but it does try to incorporate some amount of structural information by looking at size via molecular weight. Adding in a TMHMM search to rank membrane bound residues would probably help acheive better predictions. As an advantage, Nir's tool considers both conservation at the amino acid level and the nucleotide level through the BLOSUM score and GERP score respectively. 
 
 Gerstein lab data shows that SubjectZ has 824 rare nonsynonymous coding variants (4). Given that we started from a file of about 3500 nonsynonymous SNVs and SubjectZ is supposed to contain over 10,000 nonsynonymous SNVs, it is unclear how our results (described below) compare to this data (4).
+#### References:
 
+ References can be included here or at the end of each relevant section.
+ 
 ### Coding:
 
 #### Documentation: *De novo* Variant Prioritization Tool for SubjectZ
@@ -113,9 +116,4 @@ Choi Y., Chan A.P. PROVEAN web server: a tool to predict the functional effect o
 
 Kumar P., Henikoff S., Ng P.C. Predicting the effects of coding non-synonymous variants on protein function using the SIFT algorithm. Nature Protocols. 2009;4(8):1073-1082.
 
-
-#### References:
-
- References can be included here or at the end of each relevant section.
- 
  
