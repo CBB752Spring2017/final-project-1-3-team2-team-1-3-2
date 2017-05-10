@@ -138,7 +138,6 @@ mutations$gerp <- gerp(x$GERP)
 hist(mutations$gerp, probability = TRUE, las=3,
      main="GERP Score Histogram", xlab="",
      border="blue", col="red")
-
 ```
 
 # Premature Stop
@@ -199,4 +198,10 @@ mutations$score <- coeff$c*mutations$cc + coeff$s*mutations$size +
   coeff$b*mutations$blosum + coeff$g*mutations$gerp
 m <- which.max(mutations$score)
 print(paste("The most deleterious mutations is:", x$loc[m]))
+
+hist(mutations$score, probability = TRUE, las=3,
+     main="Deleterious Score Histogram", xlab="",
+     border="blue", col="red")
 ```
+
+As one can see, the scoring histogram is right skewed: most mutations are meaningless, while very few might be actually deleterious
