@@ -57,7 +57,7 @@ Ideally, gene information, variant information such as GERP scores, and phenotyp
 #### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT, PolyPhen2 and PROVEAN
 For more detailed documentation of Nir's tool and common variant prioritization tools, see the Coding and Pipeline sections. 
 
-Both SIFT and PROVEAN only take into account sequence information when calculating variant deleteriousness. PROVEAN is a much more advanced and nuanced tool, looking at sequence, structure, and existing functional information to make its prediction. It also resulted in no "undetermined" SNVs. Interestingly, although there were no synonymous SNVs in the input file, all open-source tools predicted a handful, possibly because the reference genomes the tools compare to are different from the one in the input file. 
+Both SIFT and PROVEAN only take into account sequence information when calculating variant deleteriousness. PolyPhen2 is a much more advanced and nuanced tool, looking at sequence, structure, and existing functional information to make its prediction (8). It also resulted in no "undetermined" SNVs. Interestingly, although there were no synonymous SNVs in the input file, all open-source tools predicted a handful, possibly because the reference genomes the tools compare to are different from the one in the input file. 
 
 Nir's tool does not look at existing functional information, but it does try to incorporate some amount of structural information by looking at size via molecular weight. Adding in a TMHMM search to rank membrane bound residues would probably help acheive better predictions. As an advantage, Nir's tool considers both conservation at the amino acid level and the nucleotide level through the BLOSUM score and GERP score respectively. 
 
@@ -70,6 +70,7 @@ Gerstein lab data shows that SubjectZ has 824 rare nonsynonymous coding variants
 5. Cooper, Gregory M., Eric A. Stone, George Asimenos, Eric D. Green, Serafim Batzoglou, and Arend Sidow. "Distribution and intensity of constraint in mammalian genomic sequence." Genome Research. Cold Spring Harbor Lab, 01 Jan. 1970. Web. 09 May 2017.
 6. Moreau, Yves. Variant Prioritization By Genomic Data Fusion. University of Leuven, Belgium, n.d. Web. 9 May 2017. pdf presentation
 7. Ng, Pauline C., and Steven Henikoff. "Predicting the Effects of Amino Acid Substitutions on Protein Function." Annual Review of Genomics and Human Genetics 7.1 (2006): 61-80. Web.
+8. "Overview." Overview[PolyPhen-2 Wiki]. N.p., 10 Mar. 2017. Web. 09 May 2017.
 
  
 ### Coding:
