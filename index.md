@@ -15,7 +15,7 @@ Table of Contents
 
 
 **Contributors**
- -Writing: Ramya
+ -Writing and Coding Documentation: Ramya
  -Coding: Nir
  -Pipeline: Megan
 
@@ -54,24 +54,25 @@ All humans have two alleles of a given gene. Most often, only when both alleles 
 	 
 Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6).
 
-#### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT and PolyPhen
+#### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT, PolyPhen2 and PROVEAN
+For more detailed documentation of Nir's tool and common variant prioritization tools, see the Coding and Pipeline sections. 
 
+Both SIFT and PROVEAN only take into account sequence information when calculating variant deleteriousness. PROVEAN is a much more advanced and nuanced tool, looking at sequence, structure, and existing functional information to make its prediction. It also resulted in no "undetermined" SNVs. Interestingly, although there were no synonymous SNVs in the input file, all open-source tools predicted a handful, possibly because the reference genomes the tools compare to are different from the one in the input file. 
 
+Nir's tool does not look at existing functional information, but it does try to incorporate some amount of structural information by looking at size via molecular weight. Adding in a TMHMM search to rank membrane bound residues would probably help acheive better predictions. As an advantage, Nir's tool considers both conservation at the amino acid level and the nucleotide level through the BLOSUM score and GERP score respectively. 
 
-
-
-
-
+Gerstein lab data shows that SubjectZ has 824 rare nonsynonymous coding variants (4). Given that we started from a file of about 3500 nonsynonymous SNVs and SubjectZ is supposed to contain over 10,000 nonsynonymous SNVs, it is unclear how our results (described below) compare to this data (4).
 
 ### Coding:
-
 
 #### Documentation: *De novo* Variant Prioritization Tool for SubjectZ
 Below is an overview of the Variant Prioritization Tool constructed by Nir.
 
 ![alt text](https://github.com/CBB752Spring2017/final-project-1-3-team2-team-1-3-2/blob/master/13flow.png)
 
+The first step is to parse the SNV file for SubjectZ that was provided. Next, simply by reading the the file, one can classify each SNV as either synonymous or nonsynonymous. This file only contains nonsynonymous mutations, so this step is skipped. If synonymous mutations did exist, the frequency of occurance of the new codon can be calculated and scored. Next the amino acid mutation must be characterized as either missense or nonsense. If it is a nonsense mutation, the algorithm compares the length of SubjectZ's protein to that of the reference, classifying a larger difference in length as more deleterious. In the case of missense mutations, four parameters whose weights the user can decide are calculated. The size of the protein substitution is accounted for by calculating the difference in molecular weights, again with larger differences prioritized higher. The amino acid and nucleotide conservation scores are included through the BLOSUM and GERP scores for each substitution. Finally, a charge score, checking if the amino acid has changed properties or remained the same (neutral, hydrophobic, or hydrophillic) is included. Each of these four scores is added together with the user specified weights, generating a rank ordered list of SubjectZ's SNVs. 
 
+The weights for each property of the missense mutation are left to the user because there is no consensus on what property is most important for determining deleteriousness. Several parameter combinations can be attempted and all results compared.
 #### Results:
 
 
