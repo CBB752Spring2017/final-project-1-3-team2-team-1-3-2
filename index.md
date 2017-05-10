@@ -52,7 +52,7 @@ Existing information about the mutation can be accessed such as any existing inf
 
 All humans have two alleles of a given gene. Most often, only when both alleles are mutated, i.e. when the individual is homozygous for the mutation, does the disease phenotype arise. In some cases haploinsufficiency may arise, when the individual does have one functioning copy but it is not producing enough gene product for normal function. Checking whether the SNV identified is in only one or both alleles can help prioritize the mutation. Lastly, any co-varying mutations will not be caught by standard SNV ranking pipelines - only monogenic variants can be identified. 
 	 
-Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6).
+Ideally, gene information, variant information such as GERP scores, and phenotype information if any can be compiled and used with machine learning for optimal results (6)(7).
 
 #### Comparison of *de novo* Tool and Common Variant Prioritization Tools like SIFT, PolyPhen2 and PROVEAN
 For more detailed documentation of Nir's tool and common variant prioritization tools, see the Coding and Pipeline sections. 
@@ -63,13 +63,14 @@ Nir's tool does not look at existing functional information, but it does try to 
 
 Gerstein lab data shows that SubjectZ has 824 rare nonsynonymous coding variants (4). Given that we started from a file of about 3500 nonsynonymous SNVs and SubjectZ is supposed to contain over 10,000 nonsynonymous SNVs, it is unclear how our results (described below) compare to this data (4).
 #### References:
+1. 1000 Genomes Project Consortium. A map of human genome variation from population-scale sequencing. Nature. 2010 Oct 28;467(7319):1061-73. PubMed PMID: 20981092 
+2. "What are single nucleotide polymorphisms (SNPs)? - Genetics Home Reference." U.S. National Library of Medicine. National Institutes of Health, n.d. Web. 09 May 2017.
+3. "IGSR: The International Genome Sample Resource." VCF (Variant Call Format) version 4.0 | 1000 Genomes. N.p., n.d. Web. 09 May 2017.
+4. http://archive.gersteinlab.org/proj/zimmerome/part05/ppt/Slides.coding_DC.pdf
+5. Cooper, Gregory M., Eric A. Stone, George Asimenos, Eric D. Green, Serafim Batzoglou, and Arend Sidow. "Distribution and intensity of constraint in mammalian genomic sequence." Genome Research. Cold Spring Harbor Lab, 01 Jan. 1970. Web. 09 May 2017.
+6. Moreau, Yves. Variant Prioritization By Genomic Data Fusion. University of Leuven, Belgium, n.d. Web. 9 May 2017. pdf presentation
+7. Ng, Pauline C., and Steven Henikoff. "Predicting the Effects of Amino Acid Substitutions on Protein Function." Annual Review of Genomics and Human Genetics 7.1 (2006): 61-80. Web.
 
-1. Wu, Xuebing, Andrea J. Kriz, and Phillip A. Sharp. "Target specificity of the CRISPR-Cas9 system." Quantitative Biology 2.2 (2014): 59-70. Web.
-2. Kuscu, Cem, Sevki Arslan, Ritambhara Singh, Jeremy Thorpe, and Mazhar Adli. "Genome-wide analysis reveals characteristics of off-target sites bound by the Cas9 endonuclease." Nature Biotechnology32.7 (2014): 677-83. Web.
-3. Zhang, Xiao-Hui, Louis Y. Tee, Xiao-Gang Wang, Qun-Shan Huang, and Shi-Hua Yang. "Off-target Effects in CRISPR/Cas9-mediated Genome Engineering." Molecular Therapy - Nucleic Acids 4 (2015): n. pag. Web.
-4. "CRISPR/Cas9 Guide." Addgene. N.p., n.d. Web. 09 May 2017.
-5. Bae, S., J. Park, and J.-S. Kim. "Cas-OFFinder: a fast and versatile algorithm that searches for potential off-target sites of Cas9 RNA-guided endonucleases." Bioinformatics 30.10 (2014): 1473-475. Web.
-6. Zhu, Lihua J., Benjamin R. Holmes, Neil Aronin, and Michael H. Brodsky. "CRISPRseek: A Bioconductor Package to Identify Target-Specific Guide RNAs for CRISPR-Cas9 Genome-Editing Systems." PLoS ONE 9.9 (2014): n. pag. Web.
  
 ### Coding:
 
