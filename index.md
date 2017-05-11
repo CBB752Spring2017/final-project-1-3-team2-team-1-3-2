@@ -7,9 +7,13 @@ tagline: Final Project
 Project 1.3: Analyzing the Protein Coding Mutations in the Zimmerome
 ------------------
 
-
 Table of Contents
 -----------------------
+1. [Introduction](#introduction)
+2. [Writing](#writing)
+3. [Coding](#coding)
+4. [Pipeline](#pipeline)
+
 
 
 
